@@ -21,14 +21,17 @@ window.SITE = {
   "favicon": null,
   "monogram": "R",
   "colors": {
-   "ink": "#1e293b",
-   "slate": "#334155",
-   "paper": "#f6f2ea",
-   "gold": "#e0a63a",
-   "goldD": "#8a5a10",
-   "kickerOnPhoto": "#f8dc9c"
+   "ink": "#22262b",
+   "slate": "#32383f",
+   "paper": "#eeebe4",
+   "gold": "#8fb39a",
+   "goldD": "#3d6b4f",
+   "kickerOnPhoto": "#cfe3d3"
   },
-  "hero": null
+  "hero": null,
+  "coords": "33.1275° N, 97.2299° W",
+  "plate": "assets/street-plate.svg",
+  "motif": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><!-- stylized ridgeline silhouette (decorative) --><path d=\"M4 50 L40 40 L62 44 L96 26 L118 32 L150 14 L176 24 L204 18 L236 34 L262 28 L298 42 L326 38 L356 48\"/><path d=\"M4 56 H356\" stroke-width=\"1\"/></svg>"
  },
  "join": {
   "price": 29,
@@ -350,6 +353,40 @@ window.SITE = {
    "The Ridge at Northlake is in Argyle ISD. Check your campus by address with the district."
   ]
  ],
+ "heroComposition": "map-plate",
+ "accentRole": "rule",
+ "heroHeadline": "Everything The Ridge, in one place.",
+ "layout": {
+  "radius": "0px",
+  "ruleWeight": "3px",
+  "bandOrder": [
+   "intents",
+   "quick"
+  ]
+ },
+ "type": {
+  "display": {
+   "family": "Rokkitt",
+   "file": "rokkitt",
+   "weight": 700,
+   "range": "600 800",
+   "fallback": "Georgia,serif"
+  },
+  "text": [
+   {
+    "family": "Barlow",
+    "file": "barlow-400",
+    "range": "400",
+    "fallback": "system-ui,sans-serif"
+   },
+   {
+    "family": "Barlow",
+    "file": "barlow-600",
+    "range": "600 700",
+    "fallback": "system-ui,sans-serif"
+   }
+  ]
+ },
  "resources": [
   {
    "id": "hoa",

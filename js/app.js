@@ -4,7 +4,7 @@ var esc=function(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){re
 var EX='<span class="ex">Example</span>';
 var TODAY=new Date(); // prototype uses the real date
 // ---- favorites ----
-var C=S.community,KEY=S.slug+'.myharvest.v1';
+var C=S.community,KEY=S.slug+'.saved.v1';
 function store(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}}
 function isSaved(t,id){var s=store();return (s[t]||[]).indexOf(id)>-1}
 function toggle(t,id){var s=store();s[t]=s[t]||[];var i=s[t].indexOf(id);if(i>-1)s[t].splice(i,1);else s[t].push(id);localStorage.setItem(KEY,JSON.stringify(s));return i===-1}
@@ -43,7 +43,7 @@ var IDX=index();
 function search(q){q=q.trim().toLowerCase();if(!q)return [];var w=q.split(/\s+/);
  var syn={ac:'hvac',air:'hvac',school:'schools',trash:'trash',pizza:'pizza',soccer:'soccer',plumber:'plumbing',plumbers:'plumbing',plumb:'plumbing',electrician:'electrical',electricians:'electrical',electric:'electrical',cleaner:'cleaning',cleaners:'cleaning',maid:'cleaning',landscaper:'landscaping',landscapers:'landscaping',lawn:'landscaping',yard:'landscaping',pool:'pool',pools:'pool',tutor:'tutoring',tutors:'tutoring',pet:'pet',pets:'pet',roofer:'roofing',roofers:'roofing',exterminator:'pest'};
  return IDX.map(function(i){var t=i.txt.toLowerCase(),s=0;w.forEach(function(x){x=syn[x]||x;if(t.indexOf(x)>-1)s+=1;if(t.indexOf(x.replace(/s$/,''))>-1)s+=.5});return [s,i]}).filter(function(a){return a[0]>0}).sort(function(a,b){return b[0]-a[0]}).slice(0,10).map(function(a){return a[1]})}
-function wireSearch(){var f=$('#sform');if(!f)return;var ch=$('#chips');if(ch)ch.innerHTML=(S.heroChips||[]).map(function(c){return '<button class="chip" type="button" data-q="'+esc(c[1])+'">'+esc(c[0])+'</button>'}).join('');var inp=$('#q'),box=$('#results');
+function wireSearch(){var f=$('#sform');if(!f)return;var ch=$('#chips');if(ch)ch.innerHTML=(S.heroChips||[]).map(function(c){return '<button class="chip" type="button" data-q="'+esc(c[1])+'">'+esc(c[0])+'</button>'}).join('<span class="sep" aria-hidden="true">/</span>');var inp=$('#q'),box=$('#results');
  function run(){var r=search(inp.value);box.hidden=!inp.value.trim();
   box.innerHTML=r.length?r.map(function(i){return '<a class="res" href="'+i.href+'"><span class="t">'+i.t+'</span><span><b>'+esc(i.title)+(i.ex?' '+EX:'')+'</b>'+esc(i.sub)+'</span></a>'}).join(''):'<p class="res">No match in '+esc(C)+' yet. <a href="#need">Tell us what '+esc(C)+' needs</a></p>'}
  f.addEventListener('submit',function(e){e.preventDefault();run()});var pq=new URLSearchParams(location.search).get('q');if(pq){inp.value=pq;run()}inp.addEventListener('input',run);
@@ -111,8 +111,13 @@ function gateResident(){var has=(S.resources||[]).length>0,hasSides=!!(S.sides&&
  $$('[data-needs="offers"]').forEach(function(e){if(!activeOffers().length){e.hidden=true;e.style.display='none'}});
  $$('[data-needs="businesses"]').forEach(function(e){if(!S.businesses.length){e.hidden=true;e.style.display='none'}});}
 function verified(d){return d?'<p class="note" style="margin:6px 0 0">Last verified '+new Date(d+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})+'</p>':''}
+
+// R2: layout.bandOrder moves named home bands to the top (in that order); motif divider after the hero and before the lead loop
+function applyLayout(){var L=S.layout||{},m=$('main');if(!m)return;var o=L.bandOrder||[];var anchor=m.querySelector('[data-band]');
+ if(anchor&&o.length){o.slice().reverse().forEach(function(n){var b=m.querySelector('[data-band="'+n+'"]');if(b&&anchor.parentNode){m.insertBefore(b,m.querySelector('[data-band]'))}})}
+ if(S.brand&&S.brand.motif){var mk=function(){var d=document.createElement('div');d.className='motif';d.setAttribute('aria-hidden','true');d.innerHTML='<img src="assets/motif.svg" alt="" width="360" height="60">';return d};var h=m.querySelector('.hero,.phero');if(h)h.after(mk());var nd=$('#need');if(nd)nd.before(mk())}}
 window.H={S:S,verified:verified,renderPitch:renderPitch,$:$,$$:$$,esc:esc,EX:EX,bizCard:bizCard,offerCard:offerCard,activeOffers:activeOffers,catName:catName,badges:badges,cta:cta,saveBtn:saveBtn,store:store,wireRecs:wireRecs};
-gateResident();renderQuick();renderPitch('home');wireSearch();renderNow();wireLookup();renderGuide();wireRecs();wireAsk();wireNeed();
+applyLayout();gateResident();renderQuick();renderPitch('home');wireSearch();renderNow();wireLookup();renderGuide();wireRecs();wireAsk();wireNeed();
 })();
 /* CLS gate release: page-specific inline scripts run right after app.js, so release on DOMContentLoaded */
 document.addEventListener('DOMContentLoaded',function(){document.documentElement.classList.remove('js-wait')});
