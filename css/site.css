@@ -342,3 +342,11 @@ aside.card .btn{white-space:normal;overflow-wrap:anywhere;text-align:center}
 .mark{text-align:right;transform:translate(5%,-50%)}
 @media (max-width:600px){.nophoto .scrollcue{display:none}.nophoto .hero .mark{position:relative;top:auto;bottom:auto;transform:translateX(6%);margin:8px 0 0;align-self:flex-end}.nophoto .hero .mark.map{transform:none;width:130%;align-self:center;margin-top:-8px}.mark span{font-size:5.5rem}}
 .mark{transform:translate(1%,-50%)}@media (max-width:600px){.nophoto .hero .mark{transform:none}}.mark span{width:max-content;margin-left:auto}
+@media (max-width:1023px){.nophoto .hero{flex-direction:column;align-items:stretch}.nophoto .hero .wrap{width:var(--wrap);padding-top:40px}.nophoto .scrollcue{display:none}.nophoto .hero .mark{position:relative;top:auto;bottom:auto;transform:none;margin:8px 0 0;align-self:flex-end}.nophoto .hero .mark.map{width:100%;align-self:center;margin-top:-8px}.plate{position:static;text-align:left;margin:0 auto;width:var(--wrap);padding-bottom:32px}}
+.plate,.plate small{font-size:1rem}
+/* r3 N4-N6 + Marco SOFT */
+.band p a[href="#need"]{display:inline-block;padding:12px 0}
+.chips .sep{opacity:.8}
+.mark span::before{content:attr(data-w)}
+@media (min-width:1024px){.mark{top:62%}}
+@media (min-width:1024px) and (max-width:1799px){.mark span{font-size:11vw}}
