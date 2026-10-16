@@ -296,7 +296,7 @@ aside.card .btn{white-space:normal;overflow-wrap:anywhere;text-align:center}
 .seg label:has(:checked):before{background:var(--gold);box-shadow:inset 0 0 0 3px var(--paper)}
 /* no-photo directories: paper hero, ink type, accent hairline, name-mark or map plate */
 .nophoto .hdr{position:sticky;top:0;color:var(--ink);background:var(--paper);border-bottom:var(--rule) solid var(--line)}
-.nophoto .brand,.nophoto .nav a{color:var(--ink)}
+.nophoto .hdr .brand,.nophoto .hdr .nav a{color:var(--ink)}
 .nophoto .nav a:hover,.nophoto .nav a[aria-current]{background:rgba(0,0,0,.06)}
 .nophoto .menu-btn{color:var(--ink);border-color:var(--ink)}
 @media (max-width:1023px){.nophoto .nav{background:var(--paper)}.nophoto .nav a{border-bottom-color:var(--line)}}
@@ -316,7 +316,7 @@ aside.card .btn{white-space:normal;overflow-wrap:anywhere;text-align:center}
 .mark.map img{width:100%;height:auto}
 .hero .wrap{z-index:1}
 .plate{position:absolute;right:max(4vw,24px);bottom:28px;z-index:1;margin:0;font:600 .875rem/1.4 var(--f-text);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:right}
-.plate small{display:block;font-size:.8125rem;letter-spacing:.04em;text-transform:none;font-weight:400}
+.plate small{display:block;font-size:.875rem;letter-spacing:.04em;text-transform:none;font-weight:400}
 @media (max-width:600px){.mark span{font-size:6.5rem}.mark{top:auto;bottom:56px;transform:translateX(22%)}.mark.map{width:120vw;bottom:40px}.plate{position:static;text-align:left;margin:24px 4vw 0;padding-bottom:24px}}
 /* accent roles */
 .acc-rule .band .kicker:before{content:"";display:inline-block;width:28px;height:var(--rule);background:currentColor;vertical-align:middle;margin:0 12px 3px 0}
@@ -334,3 +334,11 @@ aside.card .btn{white-space:normal;overflow-wrap:anywhere;text-align:center}
 #evsort{border-color:#857c6c!important}
 .guide p a{display:inline-block;padding:12px 0}
 .chip{min-width:48px}.guide p a{min-width:48px}
+
+/* Marco R2 */
+@media (max-width:600px){.nophoto .hero{flex-direction:column;align-items:stretch}.nophoto .hero .wrap{width:var(--wrap);padding-top:40px}.plate{margin:0 auto;width:var(--wrap);padding-bottom:32px}}
+.seg label{min-height:48px}
+/* R3: name-mark breaks on words (no stray partial letter), small bleed only */
+.mark{text-align:right;transform:translate(5%,-50%)}
+@media (max-width:600px){.nophoto .scrollcue{display:none}.nophoto .hero .mark{position:relative;top:auto;bottom:auto;transform:translateX(6%);margin:8px 0 0;align-self:flex-end}.nophoto .hero .mark.map{transform:none;width:130%;align-self:center;margin-top:-8px}.mark span{font-size:5.5rem}}
+.mark{transform:translate(1%,-50%)}@media (max-width:600px){.nophoto .hero .mark{transform:none}}.mark span{width:max-content;margin-left:auto}
